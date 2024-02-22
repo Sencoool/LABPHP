@@ -45,7 +45,7 @@
             echo '</table>';
             mysqli_close ( $conn );
             echo '<br><br><a href="bookList2.php">หนังสือที่มีการเช่ามากกว่า 5 วัน</a>';
-            echo '<br><br><a href="bookInnerjoin.php">หนังสือที่มีการ Innerjoin ระหว่าง Table book และ Table statusbook</a>';
+            echo '<br><br><a href="bookInnerjoin.php">การ Innerjoin ระหว่าง Table book และ Table statusbook</a>';
             echo '</center>';
         ?>
     </body>

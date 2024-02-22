@@ -16,10 +16,10 @@
             mysqli_query($conn,"set character_set_connection=utf8mb4");
             mysqli_query($conn,"set character_set_client=utf8mb4");
             mysqli_query($conn,"set character_set_results=utf8mb4");
-            $sql = "SELECT book.BookID, book.BookName, book.StatusID FROM book INNER JOIN statusbook ON book.StatusID = statusbook.StatusID";
+            $sql = "SELECT book.BookID, book.BookName, book.StatusID FROM book INNER JOIN statusbook ON book.StatusID = statusbook.StatusID"; // Select mean that u want to see the result of this column
             $result = mysqli_query ($conn, $sql);
             echo '<center>';
-            echo '<br><h3>รายชื่อหนังสือที่มีการเช่ามากกว่า 5 วัน</h3>';
+            echo '<br><h3>การ Innerjoin ระหว่าง Table book และ Table statusbook</h3>';
             echo '<table width="500" border="0">';
             echo '</table>';
             echo '<br><table width="500" border="1">';
