@@ -15,7 +15,7 @@
             mysqli_query($conn,"set character_set_connection=utf8mb4");
             mysqli_query($conn,"set character_set_client=utf8mb4");
             mysqli_query($conn,"set character_set_results=utf8mb4");
-            $sql = "select * from book order by bookId";
+            $sql = "SELECT * from book order by bookId";
             $result = mysqli_query ($conn, $sql);
             echo '<center>';
             echo '<br><h3>รายชื่อหนังสือ</h3>';
@@ -45,7 +45,6 @@
             echo '</table>';
             mysqli_close ( $conn );
             echo '<br><br><a href="bookList2.php">หนังสือที่มีการเช่ามากกว่า 5 วัน</a>';
-            echo '<br><br><a href="/">Back to menu</a>';
             echo '</center>';
         ?>
     </body>
