@@ -27,8 +27,9 @@
                 echo "UnitRent: " . $row["UnitRent"] . "<br>";
                 echo "DayAmount: " . $row["DayAmount"] . "<br>";
                 echo "BookDate: " . $row["BookDate"] . "<br>";
-                echo "PictureURL: " . $row["Picture"] . "<br>";
-                echo "<img src='pictures/{$row['Picture']}' alt='Book Image'><br>";
+                if(!empty($row['Picture'])) {
+                    echo "<img src='pictures/{$row['Picture']}'>"; // If image not showing mean that in DB URL length not long enough
+                }
             } else {
                 echo "ไม่พบข้อมูลหนังสือ";
             }
@@ -66,4 +67,5 @@
         mysqli_close($conn);
     ?>
      <a href="/"></a>
+     <p></p>
     <a href="bookList1.php">Back to List</a>
