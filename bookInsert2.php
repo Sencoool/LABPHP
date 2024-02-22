@@ -5,7 +5,6 @@
     $statusId = $_POST['statusId'];
     $publish = $_POST['publish'];
     $unitPrice = $_POST['unitPrice'];
-
     $unitRent = $_POST['unitRent'];
     $dayAmount = $_POST['dayAmount'];
     $oldImageFile = @$_POST['oldImageFile'];
@@ -15,14 +14,16 @@
     $imageFileTmpName = @$_FILES['imageFile']['tmp_name'];
     $picture="";
     $bookDate = date("Y-m-d");
+    
     $hostname = "localhost";
     $username = "root";
     $password = "";
     $dbName = "bookStore";
-    $conn = mysqli_connect($hostname, $username, $password);
+    $conn = mysqli_connect($hostname, $username, $password); //Things that using to connect DB
     echo '<center>';
-    if (!$conn)
+    if (!$conn){ //If can't connect database
         die("ไม่สามารถติดต่อกับ mySQL ได้");
+    }
     mysqli_select_db($conn, $dbName) or die("ไม่สามารถเลือกฐานข้อมูล bookStore ได้");
     mysqli_query($conn,"set character_set_connection=utf8mb4");
     mysqli_query($conn,"set character_set_client=utf8mb4");
@@ -32,8 +33,7 @@
     }
     else
     {
-    move_uploaded_file($_FILES["imageFile"]["tmp_name"],"pictures/".$_FILES["imageFile"]["name"]);
-
+        move_uploaded_file($_FILES["imageFile"]["tmp_name"],"pictures/".$_FILES["imageFile"]["name"]);
         $picture = $_FILES['imageFile']['name'];
     }
     $sql = "insert into book(bookId, bookName, typeId, statusId, publish, unitPrice, unitRent,dayAmount, picture, bookDate) values ('$bookId', '$bookName', '$typeId', '$statusId', '$publish','$unitPrice', '$unitRent', '$dayAmount', '$picture', '$bookDate')";

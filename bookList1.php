@@ -7,8 +7,9 @@
             $password = "";
             $dbName = "bookStore";
             $conn = mysqli_connect($hostname, $username, $password);
-            if (!$conn)
-            die("ไม่สามารถติดต่อกับ MySQL ได้");
+            if (!$conn){
+                die("ไม่สามารถติดต่อกับ MySQL ได้");
+            }
             mysqli_select_db($conn, $dbName) or die("ไม่สามารถเลือกฐานข้อมูล bookStoreได้");
 
             mysqli_query($conn,"set character_set_connection=utf8mb4");
