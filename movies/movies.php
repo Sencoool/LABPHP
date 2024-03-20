@@ -43,7 +43,7 @@
             <td>
                 <a href="">View</a>
                 <a href="">Update</a>
-                <a href="">Delete</a>
+                <a href="moviedelete.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Delete</a>
             </td>
         </tr>
         <?php } ?>
