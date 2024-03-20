@@ -34,11 +34,10 @@
 
         $day = $interval->days;
 
-        $sql = "INSERT INTO movies(Title,Director,Years,StartDates,Ends Dates,IntervalDays) values ('$title','$director','$year','$start','$end','$day')";
-        mysqli_query($conn,$sql)or die("ไม่สามารถเพิ่มข้อมูลลง DB ได้");
+        $sql = "INSERT INTO movies(Title,Director,Years,StartDates,EndsDates,IntervalDays) values ('$title','$director','$year','$start','$end','$day')";
+        mysqli_query($conn, $sql) or die("Error" .mysqli_error($conn));
         header('Location: movies.php');
     }
-
     ?>
     <h1>Create Movie</h1>
     <form action="#" method="post">

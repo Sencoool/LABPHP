@@ -7,6 +7,20 @@
     <title>Movies</title>
 </head>
 <body>
+    <?php
+    $hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "moviestore";
+    $conn = mysqli_connect($hostname,$username,$password);
+    if(!$conn)die("Can't connect to SQL");
+    mysqli_select_db($conn,$dbname)or die("Can't connect to the DB");
+    mysqli_query($conn,"set character_set_connection=utf8mb4");
+    mysqli_query($conn,"set character_set_client=utf8mb4");
+    mysqli_query($conn,"set character_set_results=utf8mb4");
+    $sql = "select * from movies order by MovieID";
+    $movies = mysqli_query($conn, $sql);
+    ?>
     <h1>Movies</h1>
     <table>
         <tr>
@@ -15,22 +29,24 @@
             <th>Years</th>
             <th>Start Dates</th>
             <th>Ends Dates</th>
-            <th>Days</th>
+            <th>Showing Days</th>
             <th>Actions</th>
         </tr>
+        <?php while($eachmovie = mysqli_fetch_assoc($movies)){ ?>
         <tr>
-            <td>ชื่อเรื่อง</td>
-            <td>ผู้แต่ง</td>
-            <td>ปีที่ฉาย</td>
-            <td>วันเริ่มการฉาย</td>
-            <td>วันสิ้นสุดการฉาย</td>
-            <td>จำนวนวันทั้งหมดที่ฉาย</td>
+            <td><?php echo $eachmovie['Title']; ?></td>
+            <td><?php echo $eachmovie['Director']; ?></td>
+            <td><?php echo $eachmovie['Years']; ?></td>
+            <td><?php echo $eachmovie['StartDates']; ?></td>
+            <td><?php echo $eachmovie['EndsDates']; ?></td>
+            <td><?php echo $eachmovie['IntervalDays']; ?></td>
             <td>
                 <a href="">View</a>
                 <a href="">Update</a>
                 <a href="">Delete</a>
             </td>
         </tr>
+        <?php } ?>
     </table>
     <a href="moviecreate.php">Create New Movie</a><br>
 </body>
