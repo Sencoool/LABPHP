@@ -30,13 +30,17 @@
         $startobj = new DateTime($start);
         $endobj = new DateTime($end);
 
-        $interval = $endobj->diff($startobj);
+        if($endobj > $startobj){
+            $interval = $endobj->diff($startobj);
 
-        $day = $interval->days;
-
-        $sql = "INSERT INTO movies(Title,Director,Years,StartDates,EndsDates,IntervalDays) values ('$title','$director','$year','$start','$end','$day')";
-        mysqli_query($conn, $sql) or die("Error" .mysqli_error($conn));
-        header('Location: movies.php');
+            $day = $interval->days;
+    
+            $sql = "INSERT INTO movies(Title,Director,Years,StartDates,EndsDates,IntervalDays) values ('$title','$director','$year','$start','$end','$day')";
+            mysqli_query($conn, $sql) or die("Error" .mysqli_error($conn));
+            header('Location: movies.php');
+        }else{
+            echo "<center>กรุณาใส่เวลาเริ่มและสิ้นสุดการฉายให้ถูกต้อง</center>";
+        }
     }
     ?>
     <h1>Create Movie</h1>
