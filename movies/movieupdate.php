@@ -89,6 +89,6 @@
         }
     }
     ?>
-    <a href="movies.php">Back to Movie List</a>
+    <a href="movie.php?MovieID=<?php echo $MovieID ?>">Back to Movie info</a>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php 
+session_start()
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,5 +53,6 @@
         <?php } ?>
     </table>
     <a href="moviecreate.php">Create New Movie</a><br>
+    <a href="login.php">Login</a>
 </body>
 </html>
