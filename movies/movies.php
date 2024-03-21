@@ -42,7 +42,7 @@
             <td><?php echo $eachmovie['IntervalDays']; ?></td>
             <td>
                 <a href="">View</a>
-                <a href="">Update</a>
+                <a href="movieupdate.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Update</a>
                 <a href="moviedelete.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Delete</a>
             </td>
         </tr>
