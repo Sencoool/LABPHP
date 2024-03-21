@@ -18,7 +18,10 @@
     mysqli_query($conn,"set character_set_connection=utf8mb4");
     mysqli_query($conn,"set character_set_client=utf8mb4");
     mysqli_query($conn,"set character_set_results=utf8mb4");
-    $sql = "select * from movies order by MovieID";
+
+    $MovieID = $_GET['MovieID'];
+
+    $sql = "select * from movies WHERE MovieID = $MovieID";
     $movies = mysqli_query($conn, $sql);
     ?>
     <h1>Movies</h1>
@@ -30,7 +33,7 @@
             <th>Start Dates</th>
             <th>Ends Dates</th>
             <th>Showing Days</th>
-            <th>Actions</th>
+            <th>Image</th>
         </tr>
         <?php while($eachmovie = mysqli_fetch_assoc($movies)){ ?>
         <tr>
@@ -40,14 +43,18 @@
             <td><?php echo $eachmovie['StartDates']; ?></td>
             <td><?php echo $eachmovie['EndsDates']; ?></td>
             <td><?php echo $eachmovie['IntervalDays']; ?></td>
-            <td>
-                <a href="movie.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">View</a>
-                <a href="movieupdate.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Update</a>
-                <a href="moviedelete.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Delete</a>
-            </td>
+            <?php if($eachmovie['Image'] == ""){ ?>
+            <td>ไม่มีรูปสำหรับหนังเรื่องนี้</td>
+            <?php } else { ?>
+            <td><img src="image/<?php echo $eachmovie['Image'] ?>" alt=""></td>
+            <?php }?>
         </tr>
         <?php } ?>
     </table>
-    <a href="moviecreate.php">Create New Movie</a><br>
+    <br><center>
+        <a href="movieupdate.php?MovieID=<?php echo $MovieID ?>">Update</a>
+        <a href="moviedelete.php?MovieID=<?php echo $MovieID ?>">Delete</a>
+        <a href="movies.php">Back to all movies</a>
+    </center>
 </body>
 </html>
