@@ -45,7 +45,7 @@ session_start();
     <h1>User Login</h1>
     <form action="#" method="post">
         <label for="title">Username:</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" required>
         <br>
         <label for="author">Password:</label>
         <input type="text" id="password" name="password">
