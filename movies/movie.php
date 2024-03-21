@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +55,7 @@
         <?php } ?>
     </table>
     <br><center>
+        <p><?php echo $_SESSION['Username'] ?></p>
         <a href="movieupdate.php?MovieID=<?php echo $MovieID ?>">Update</a>
         <a href="moviedelete.php?MovieID=<?php echo $MovieID ?>">Delete</a>
         <a href="movies.php">Back to all movies</a>

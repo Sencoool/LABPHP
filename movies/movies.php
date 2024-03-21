@@ -53,6 +53,11 @@ session_start()
         <?php } ?>
     </table>
     <a href="moviecreate.php">Create New Movie</a><br>
+    <?php if($_SESSION) { ?>
+    <p><?php echo $_SESSION['Username'] ?></p>
+    <a href="logout.php">Logout</a>
+    <?php } else { ?>
     <a href="login.php">Login</a>
+    <?php } ?>
 </body>
 </html>
