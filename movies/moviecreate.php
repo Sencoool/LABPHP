@@ -26,6 +26,18 @@
         $year = $_POST['year'];
         $start = $_POST['start'];
         $end = $_POST['end'];
+        $imageName = @$_FILES['image']['name'];
+        $imageType = @$_FILES['image']['type'];
+        $imageSize = @$_FILES['image']['size'];
+        $imageTmpName = @$_FILES['image']['tmp_name'];
+        $image = "";
+
+        if($_FILES["image"]["name"] == ""){
+            echo "คุณไม่ได้ใส่รูปภาพ";
+        }else{
+            move_uploaded_file($_FILES['image']['tmp_name'],"image/".$_FILES["image"]['name']);
+            $image = $_FILES['image']['name'];
+        }
 
         $startobj = new DateTime($start);
         $endobj = new DateTime($end);
@@ -33,18 +45,20 @@
         if($endobj > $startobj){
             $interval = $endobj->diff($startobj);
 
-            $day = $interval->days;
+            $day = $interval->days; // วัน
+            // $month = $interval->m; // เดือน
+            // $year = $interval->y; // ปี
     
-            $sql = "INSERT INTO movies(Title,Director,Years,StartDates,EndsDates,IntervalDays) values ('$title','$director','$year','$start','$end','$day')";
+            $sql = "INSERT INTO movies(Title,Director,Years,StartDates,EndsDates,IntervalDays,Image) values ('$title','$director','$year','$start','$end','$day','$image')";
             mysqli_query($conn, $sql) or die("Error" .mysqli_error($conn));
             header('Location: movies.php');
         }else{
-            echo "<center>กรุณาใส่เวลาเริ่มและสิ้นสุดการฉายให้ถูกต้อง</center>";
+            echo "<center>!กรุณาใส่เวลาเริ่มและสิ้นสุดการฉายให้ถูกต้อง</center>";
         }
     }
     ?>
     <h1>Create Movie</h1>
-    <form action="#" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title">
         <br>
@@ -59,6 +73,9 @@
         <br>
         <label for="end">End Date:</label>
         <input type="date" id="end" name="end">
+        <br>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image">
         <br>
         <input type="submit" value="create" name="create">
     </form>
