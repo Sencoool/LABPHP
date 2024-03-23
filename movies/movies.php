@@ -47,7 +47,7 @@ session_start()
             <td>
                 <a href="movie.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">View</a>
                 <a href="movieupdate.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Update</a>
-                <a href="moviedelete.php?MovieID=<?php echo $eachmovie['MovieID'] ?>">Delete</a>
+                <a href="moviedelete.php?MovieID=<?php echo $eachmovie['MovieID'] ?>" onclick="return confirm('แน่ใจหรือไม่ว่าคุณต้องการลบ')">Delete</a>
             </td>
         </tr>
         <?php } ?>
